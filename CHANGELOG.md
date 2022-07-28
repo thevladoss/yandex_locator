@@ -1,3 +1,3 @@
-## 0.0.1
+## [0.0.1] - 27 July 2022
 
-* TODO: Describe initial release.
+* Package created and published

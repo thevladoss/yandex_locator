@@ -17,7 +17,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  final _yandexLocatorPlugin = YandexLocator();
+  final _yandexLocatorPlugin = YandexLocator(
+      apiKey: 'AD1A4GIBAAAAx38RCAIAJIeGq9yKheW3MlJiYBLbVj0OmlcAAAAAAAAAAADn0u1HhyMsuBov4V_cmwIkDrlmeA==');
 
   @override
   void initState() {
@@ -32,7 +33,8 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await _yandexLocatorPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _yandexLocatorPlugin.getPlatformVersion() ??
+              'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }

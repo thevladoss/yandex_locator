@@ -19,11 +19,11 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelYandexLocator>());
   });
 
-  test('getPlatformVersion', () async {
-    YandexLocator yandexLocatorPlugin = YandexLocator();
-    MockYandexLocatorPlatform fakePlatform = MockYandexLocatorPlatform();
-    YandexLocatorPlatform.instance = fakePlatform;
-  
-    expect(await yandexLocatorPlugin.getPlatformVersion(), '42');
-  });
+  // test('getPlatformVersion', () async {
+  //   YandexLocator yandexLocatorPlugin = YandexLocator();
+  //   MockYandexLocatorPlatform fakePlatform = MockYandexLocatorPlatform();
+  //   YandexLocatorPlatform.instance = fakePlatform;
+  //
+  //   expect(await yandexLocatorPlugin.getPlatformVersion(), '42');
+  // });
 }
