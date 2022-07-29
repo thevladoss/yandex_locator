@@ -39,7 +39,6 @@ class _MyAppState extends State<MyApp> {
     //   platformVersion = 'Failed to get platform version.';
     // }
 
-    _yandexLocatorPlugin.getAllWifis();
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
@@ -53,6 +52,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(_yandexLocatorPlugin.getAllWifis());
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

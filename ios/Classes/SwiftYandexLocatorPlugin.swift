@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import CoreTelephony
 
 public class SwiftYandexLocatorPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -8,7 +9,19 @@ public class SwiftYandexLocatorPlugin: NSObject, FlutterPlugin {
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
-  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
-  }
+    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        switch call.method {
+        case "getAllWifis":
+            var wifis = [Array<String>]()
+            let networkInfo: CTTelephonyNetworkInfo = CTTelephonyNetworkInfo()
+            let ar = networkInfo.subscriberCellularProvider
+            if ar != nil {
+                print(ar?.mobileCountryCode)
+            }
+            result(wifis)
+        default:
+            result(FlutterMethodNotImplemented)
+        }
+    }
 }
+
