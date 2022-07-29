@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  network_info_plus_windows
   yandex_locator
 )
 

@@ -6,6 +6,7 @@ import 'dart:html' as html show window;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
+import 'models/WiFiData.dart';
 import 'yandex_locator_platform_interface.dart';
 
 /// A web implementation of the YandexLocatorPlatform of the YandexLocator plugin.
@@ -17,10 +18,9 @@ class YandexLocatorWeb extends YandexLocatorPlatform {
     YandexLocatorPlatform.instance = YandexLocatorWeb();
   }
 
-  /// Returns a [String] containing the version of the platform.
+  /// Returns a [List<String>] containing the version of the platform.
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = html.window.navigator.userAgent;
-    return version;
+  Future<List<WiFiData>> getAllWifis() async {
+    return [];
   }
 }

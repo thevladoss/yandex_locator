@@ -3,7 +3,7 @@
 // This must be included before many other Windows headers.
 #include <windows.h>
 
-// For getPlatformVersion; remove unless needed for your plugin implementation.
+// For getAllWifis; remove unless needed for your plugin implementation.
 #include <VersionHelpers.h>
 
 #include <flutter/method_channel.h>
@@ -40,7 +40,7 @@ YandexLocatorPlugin::~YandexLocatorPlugin() {}
 void YandexLocatorPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-  if (method_call.method_name().compare("getPlatformVersion") == 0) {
+  if (method_call.method_name().compare("getAllWifis") == 0) {
     std::ostringstream version_stream;
     version_stream << "Windows ";
     if (IsWindows10OrGreater()) {

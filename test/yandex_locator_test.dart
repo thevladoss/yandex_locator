@@ -4,14 +4,14 @@ import 'package:yandex_locator/yandex_locator_platform_interface.dart';
 import 'package:yandex_locator/yandex_locator_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockYandexLocatorPlatform 
-    with MockPlatformInterfaceMixin
-    implements YandexLocatorPlatform {
-
-  @override
-  Future<String?> getPlatformVersion() => Future.value('42');
-}
-
+// class MockYandexLocatorPlatform
+//     with MockPlatformInterfaceMixin
+//     implements YandexLocatorPlatform {
+//
+//   @override
+//   Future<List<Object?>> getAllWifis() => Future.value([]);
+// }
+//
 void main() {
   final YandexLocatorPlatform initialPlatform = YandexLocatorPlatform.instance;
 
@@ -19,11 +19,11 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelYandexLocator>());
   });
 
-  // test('getPlatformVersion', () async {
+  // test('getAllWifis', () async {
   //   YandexLocator yandexLocatorPlugin = YandexLocator();
   //   MockYandexLocatorPlatform fakePlatform = MockYandexLocatorPlatform();
   //   YandexLocatorPlatform.instance = fakePlatform;
   //
-  //   expect(await yandexLocatorPlugin.getPlatformVersion(), '42');
+  //   expect(await yandexLocatorPlugin.getAllWifis(), '42');
   // });
 }

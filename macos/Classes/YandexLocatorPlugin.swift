@@ -4,37 +4,32 @@ import Foundation
 import CoreWLAN
 
 public class YandexLocatorPlugin: NSObject, FlutterPlugin {
-  public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "yandex_locator", binaryMessenger: registrar.messenger)
-    let instance = YandexLocatorPlugin()
-    registrar.addMethodCallDelegate(instance, channel: channel)
-    if let discovery = Discovery() {
-        print(discovery.networks)
-        for network in discovery.networks {
-            print(network.ssid!)
-        }
+    public static func register(with registrar: FlutterPluginRegistrar) {
+        let channel = FlutterMethodChannel(name: "yandex_locator", binaryMessenger: registrar.messenger)
+        let instance = YandexLocatorPlugin()
+        registrar.addMethodCallDelegate(instance, channel: channel)
     }
-  }
-
-  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    switch call.method {
-    case "getPlatformVersion":
-        if let discovery = Discovery() {
-            print(discovery.networks)
-            for network in discovery.networks {
-                print(network.rssiValue)
-                print(network.bssid)
-                print(network.beaconInterval)
+    
+    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        switch call.method {
+        case "getAllWifis":
+            var wifis = [Array<String>]()
+            if let discovery = Discovery() {
+                for network in discovery.networks {
+                    var wifi = [String]()
+                    wifi.append(network.bssid ?? "")
+                    wifi.append(String(network.rssiValue))
+                    wifi.append(String(network.beaconInterval))
+                    wifis.append(wifi)
+                }
             }
+            result(wifis)
+        default:
+            result(FlutterMethodNotImplemented)
         }
-        result("macOS " + ProcessInfo.processInfo.operatingSystemVersionString)
-    default:
-      result(FlutterMethodNotImplemented)
     }
-  }
-    
-    
 }
+
 
 class Discovery {
 
@@ -42,7 +37,6 @@ class Discovery {
     var interfacesNames: [String] = []
     var networks: Set<CWNetwork> = []
 
-    // Failable init using default interface
     init?() {
         if let defaultInterface = CWWiFiClient.shared().interface(),
                let name = defaultInterface.interfaceName {
@@ -54,14 +48,12 @@ class Discovery {
         }
     }
 
-    // Init with the literal interface name, like "en1"
     init(interfaceWithName name: String) {
         self.currentInterface = CWInterface(interfaceName: name)
         self.interfacesNames.append(name)
         self.findNetworks()
     }
 
-    // Fetch detectable WIFI networks
    func findNetworks() {
         do {
             self.networks = try currentInterface.scanForNetworks(withSSID: nil)
@@ -69,5 +61,4 @@ class Discovery {
             print("Error: \(error.localizedDescription)")
         }
     }
-
 }

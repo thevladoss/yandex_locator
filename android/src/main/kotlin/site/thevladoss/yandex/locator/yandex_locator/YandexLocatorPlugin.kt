@@ -22,7 +22,7 @@ class YandexLocatorPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
+    if (call.method == "getAllWifis") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()

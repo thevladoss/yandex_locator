@@ -1,4 +1,6 @@
 
+import 'package:yandex_locator/models/LocatorError.dart';
+
 enum AnswerTypes {
   gsm,
   wifi,
@@ -21,7 +23,7 @@ class LocatorAnswer {
       required this.altitudePrecision,
       required this.type});
 
-  factory LocatorAnswer.fromJson(Map<String, dynamic> json){
+  factory LocatorAnswer.fromJson(Map<String, dynamic> json) {
     AnswerTypes type = AnswerTypes.gsm;
     if (json['type'] == 'wifi') {
       type = AnswerTypes.wifi;

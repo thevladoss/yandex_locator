@@ -1,4 +1,5 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:yandex_locator/models/WiFiData.dart';
 
 import 'yandex_locator_method_channel.dart';
 
@@ -23,7 +24,7 @@ abstract class YandexLocatorPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<List<WiFiData>> getAllWifis() {
+    throw UnimplementedError('getAllWifis() has not been implemented.');
   }
 }

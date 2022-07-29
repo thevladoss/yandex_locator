@@ -24,7 +24,7 @@ static void yandex_locator_plugin_handle_method_call(
 
   const gchar* method = fl_method_call_get_name(method_call);
 
-  if (strcmp(method, "getPlatformVersion") == 0) {
+  if (strcmp(method, "getAllWifis") == 0) {
     struct utsname uname_data = {};
     uname(&uname_data);
     g_autofree gchar *version = g_strdup_printf("Linux %s", uname_data.version);
